@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <script th:src="@{/js/login.js}"></script>
+</head>
+<body>
+
+    <h1>Please Sign In</h1>
+    <div>
+        <div>
+            <input type="text" id="account" placeholder="Account">
+        </div>
+        <div>
+            <input type="password" id="password" placeholder="Password">
+        </div>
+        <div>
+            <p id="message"></p>
+        </div>
+            <button id="btn_login">Sign In</button>
+    </div>
+</body>
+</html>
