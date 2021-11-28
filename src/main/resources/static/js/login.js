@@ -11,18 +11,25 @@ document.addEventListener('DOMContentLoaded', event => {
             'password': pwd
         };
 
-        post('auth/login', body);
+//        let token = post('auth/login', body);
+//        get('v1/users/me', token)
+        post('auth/login', body).then(data => {
+            localStorage.setItem('jwt', data.accessToken);
+            console.log(data.accessToken);
+
+            get('v1/users/me', localStorage.getItem('jwt')).then(data => console.log(data));
+        });
     });
 });
 
-async function get(path, token, datas) {
+function get(path, token) {
     let headers = {};
     let url = `http://localhost:8080/${path}`;
 
     if(token && token != '') {
         headers = {
             'Content-Type': 'application/json',
-            'authentication': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`
         };
     } else {
         headers = {
@@ -35,17 +42,20 @@ async function get(path, token, datas) {
         headers: headers
     };
 
-    let res = await fetch(url, options)
-    let data = res.json();
+//    let res = await fetch(url, options)
+//    let data = await res.json();
 
-    if(res.ok) {
-        console.log(data);
-    }
+    return fetch(url, options).then(res => res.json());
 
-    throw new Error(data);
+//    if(res.ok) {
+//        console.log(data);
+//        return;
+//    }
+//
+//    throw new Error(data);
 }
 
-async function post(path, datas) {
+function post(path, datas) {
     let headers = {
         'Content-Type': 'application/json'
     };
@@ -57,12 +67,12 @@ async function post(path, datas) {
         body: JSON.stringify(datas)
     };
 
-    let res = await fetch(url, options);
-    let data = res.json();
+    return fetch(url, options).then(res => res.json());
 
-    if(res.ok) {
-        console.log(data);
-    }
+//    if(res.ok) {
+//        localStorage.setItem('jwt', data.accessToken);
+//        return data.accessToken;
+//    }
 
-    throw new Error(data);
+//    throw new Error(data);
 }
