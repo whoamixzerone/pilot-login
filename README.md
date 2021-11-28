@@ -2,7 +2,7 @@
 
 개발바닥 유튜브를 보고 호돌맨님이 알려주신 파일럿 프로젝트를 토큰까지 구현해보고자 한다  
 
-[호돌맨님 pilot-react](github.com/leejaycoke/pilot-react)
+[호돌맨님 pilot-react](https://github.com/leejaycoke/pilot-react)
 ---
 
 * 로그인 및 회원 정보 페이지를 구현합니다
