@@ -11,13 +11,12 @@ document.addEventListener('DOMContentLoaded', event => {
             'password': pwd
         };
 
-//        let token = post('auth/login', body);
-//        get('v1/users/me', token)
         post('auth/login', body).then(data => {
             localStorage.setItem('jwt', data.accessToken);
-            console.log(data.accessToken);
 
-            get('v1/users/me', localStorage.getItem('jwt')).then(data => console.log(data));
+            get('v1/users/me', localStorage.getItem('jwt')).then(user => {
+                location.href = "/page/main?id=" + user.id + "&account=" + user.account + "&name=" + user.name + "&level=" + user.level;
+            });
         });
     });
 });
@@ -42,17 +41,7 @@ function get(path, token) {
         headers: headers
     };
 
-//    let res = await fetch(url, options)
-//    let data = await res.json();
-
     return fetch(url, options).then(res => res.json());
-
-//    if(res.ok) {
-//        console.log(data);
-//        return;
-//    }
-//
-//    throw new Error(data);
 }
 
 function post(path, datas) {
@@ -68,11 +57,4 @@ function post(path, datas) {
     };
 
     return fetch(url, options).then(res => res.json());
-
-//    if(res.ok) {
-//        localStorage.setItem('jwt', data.accessToken);
-//        return data.accessToken;
-//    }
-
-//    throw new Error(data);
 }

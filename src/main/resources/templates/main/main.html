@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <script th:src="@{/js/main.js}"></script>
+</head>
+<body>
+
+    <h1>Please Sign In</h1>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">account</th>
+                <th scope="col">name</th>
+                <th scope="col">level</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>[[${user.id}]]</td>
+                <td>[[${user.account}]]</td>
+                <td>[[${user.name}]]</td>
+                <td>[[${user.level}]]</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
